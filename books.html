@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Display Book Details</title>
+</head>
+<body>
+
+    <h2>Book Information</h2>
+
+    <p id="output"></p>
+
+    <script>
+        fetch("books.json")
+            .then(response => response.json())
+            .then(data => {
+
+                // (a) Title of the first book
+                let firstBook = data.books[0].title;
+
+                // (b) Author of the second book
+                let secondAuthor = data.books[1].author;
+
+                // (c) Genres of all books
+                let allGenres = data.books.map(book => book.genres).flat();
+
+                console.log("First Book Title: " + firstBook);
+                console.log("Second Book Author: " + secondAuthor);
+                console.log("Genres of All Books: " + allGenres.join(", "));
+
+                document.getElementById("output").innerHTML =
+                    "First Book Title: " + firstBook + "<br>" +
+                    "Second Book Author: " + secondAuthor + "<br>" +
+                    "Genres of All Books: " + allGenres.join(", ");
+
+            });
+    </script>
+
+</body>
+</html>
